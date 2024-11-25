@@ -29,4 +29,11 @@ def create_app(test_config=None):
     def hello():
         return 'Hello, World!'
 
+    # Añado las funciones para cerrar la BD y para añadir la función de la línea de comandos acá, para que se añadan a la aplicación creada. 
+    from . import db 
+    db.init_app(app); #Acá llamo a la función que efectivamente añade dichas funciones.
+
+    #Se añaden las "Blueprints" a la iniciación de la aplicación
+    from . import auth
+    app.register_blueprint(auth.bp)
     return app
